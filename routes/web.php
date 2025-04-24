@@ -1,13 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 // public routes
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/contact', [HomeController::class, 'contact']);
+
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

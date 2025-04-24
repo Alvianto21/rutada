@@ -40,7 +40,7 @@
                 @endauth
 
                 @guest
-                    <x-Homes.navlink-user href="#" :active="request()->is('#')" id="user-menu-item-0">Login</x-Homes.navlink-user>
+                    <x-Homes.navlink-user href="/login" :active="request()->is('#')" id="user-menu-item-0">Login</x-Homes.navlink-user>
                 @endguest
                 </div>
               </div>
@@ -85,7 +85,7 @@
             @endauth
 
             @guest
-            <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Login</a>
+            <a href="/login" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Login</a>
             @endguest
           </div>
         </div>
