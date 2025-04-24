@@ -21,8 +21,26 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'nik',
+        'place_of_birth',
+        'date_of_birth',
+        'address',
+        'phone',
+        'photo',
+        'job',
+        'marotal_status',
+        'gender',
+        'religion',
+        'is_admin',
     ];
 
+    /**
+     * The attributes that are protected.
+     *
+     * @var list<string>
+     */
+    protected $guarded = ['id'];
+    
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -41,8 +59,17 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * The attributes that should be appended to the model's array form.
+     *
+     * @return list<string>
+     */
+    public function getDateOfBirthFormattedAttribute()
+    {
+        return [\Carbon\Carbon::parse($this->date_of_birth)->format('d-m-Y')];
     }
 }
