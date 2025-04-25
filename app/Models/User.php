@@ -32,6 +32,7 @@ class User extends Authenticatable
         'gender',
         'religion',
         'is_admin',
+        'blood_type',
     ];
 
     /**
@@ -66,10 +67,10 @@ class User extends Authenticatable
     /**
      * The attributes that should be appended to the model's array form.
      *
-     * @return list<string>
+     * @return string
      */
     public function getDateOfBirthFormattedAttribute()
     {
-        return [\Carbon\Carbon::parse($this->date_of_birth)->format('d-m-Y')];
+        return \Carbon\Carbon::parse($this->date_of_birth)->format('d-m-Y');
     }
 }

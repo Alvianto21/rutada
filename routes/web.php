@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\DasboardController;
 
 // public routes
 Route::get('/', [HomeController::class, 'index']);
@@ -12,14 +12,11 @@ Route::get('/contact', [HomeController::class, 'contact']);
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//authenticated user routes
+Route::middleware(['auth', 'verified'])->group(function (){
+    Route::get('/dashboard', [DasboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [DasboardController::class, 'profile'])->name('profile');
+    Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
 require __DIR__.'/auth.php';

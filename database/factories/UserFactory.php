@@ -35,6 +35,7 @@ class UserFactory extends Factory
             'religion' => fake()->randomElement(['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha']),
             'marital_status' => fake()->randomElement(['single', 'married']),
             'job' => fake()->randomElement(['PNS', 'TNI', 'POLRI', 'Swasta']),
+            'blood_type' => fake()->randomElement(['A', 'B', 'AB', 'O']),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];

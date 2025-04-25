@@ -10,6 +10,11 @@
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <x-homes.navlink href="/" :active="request()->is('/')">Home</x-homes.navlink>
                 <x-homes.navlink href="/contact" :active="request()->is('contact')">Contact</x-homes.navlink>
+                
+                @auth
+                    <x-homes.navlink href="/dashboard" :active="request()->is('dashboard')">Dashboard</x-homes.navlink>
+                    <x-homes.navlink href="/profile" :active="(request()->is('profile'))">Profile</x-homes.navlink>
+                @endauth
               </div>
             </div>
           </div>
@@ -34,9 +39,12 @@
                 x-transition:leave-end="opacity-0 scale-95" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                 <!-- Active: "bg-gray-100 outline-hidden", Not Active: "" -->
                 @auth                   
-                <x-Homes.navlink-user href="#" :active="request()->is('#')" id="user-menu-item-0">Your Profile</x-Homes.navlink-user>
-                <x-Homes.navlink-user href="#" :active="request()->is('#')" id="user-menu-item-0">Settings</x-Homes.navlink-user>
-                <x-Homes.navlink-user href="#" :active="request()->is('#')" id="user-menu-item-0">Sign out</x-Homes.navlink-user>
+                <x-Homes.navlink-user href="/profile" :active="request()->is('profile')" id="user-menu-item-0">Your Profile</x-Homes.navlink-user>
+                <x-Homes.navlink-user href="/dashboard" :active="request()->is('dashboard')" id="user-menu-item-0">Dashboard</x-Homes.navlink-user>
+                <form action="{{ route('logout') }}" method="post">
+                  @csrf
+                  <button type="submit" class="block px-4 py-2 text-sm text-gray-700">Sign out</button>
+                </form>
                 @endauth
 
                 @guest
@@ -66,6 +74,11 @@
           <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
           <x-homes.navlink href="/" :active="request()->is('/')">Home</x-homes.navlink>
           <x-homes.navlink href="/contact" :active="request()->is('contact')">Contact</x-homes.navlink>
+
+          @auth
+            <x-homes.navlink href="/dashboard" :active="request()->is('dashboard')">Dashboard</x-homes.navlink>
+            <x-homes.navlink href="/Profile" :active="(request()->is('profile'))">Profile</x-homes.navlink>
+          @endauth
         </div>
         <div class="border-t border-gray-700 pt-4 pb-3">
           <div class="flex items-center px-5">
@@ -79,9 +92,12 @@
           </div>
           <div class="mt-3 space-y-1 px-2">
             @auth               
-            <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your Profile</a>
-            <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Settings</a>
-            <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</a>
+            <a href="/profile" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your Profile</a>
+            <a href="/dashboard" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Dashboard</a>
+            <form action="{{ route('logout') }}" method="post">
+              @csrf
+              <button type="submit" class="rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</button>
+            </form>
             @endauth
 
             @guest

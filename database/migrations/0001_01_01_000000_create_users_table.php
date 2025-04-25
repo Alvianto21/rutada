@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('religion');
             $table->string('marital_status');
             $table->string('job');
+            $table->string('blood_type')->nullable();
             $table->string('password');
             $table->boolean('is_admin')->default(false);
             $table->rememberToken();

@@ -26,11 +26,12 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true,
             'religion' => 'Katolik',
             'marital_status' => 'single',
-            'nik' => ByteString::fromRandom(16)->toString(),
+            'nik' => random_int(1000000000000, 9999999999999),
             'place_of_birth' => 'Semarang',
             'date_of_birth' => now()->subYears(20)->format('Y-m-d'),
             'address' => 'Jl, nama no. 123, Semarang',
-            'job' => 'PNS'
+            'job' => 'PNS',
+            'blood_type' => 'A'
         ]);
     }
 }
