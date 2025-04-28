@@ -5,6 +5,7 @@
 			<div class="text-gray-800 space-x-6 sm:text-center dark:text-white">
 				<label class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Your Profile</label>
 				<div class="justify-items-center text-center py-4">
+					<!-- Photo profile -->
 					@if ($user->photo)
 						<image src="{{ asset('storage/' . $user->photo) }}" alt="{{ $user->name }}" class="object-scale-down justify-items-center text-center max-w-md rounded max-h-fit sm:max-w-sm">
 					@else
@@ -13,42 +14,31 @@
 				</div>
 				<div class="grid grid-cols-6 grid-rows-2 gap-2">
 					<!-- NIK -->
-					<label class="text-lg font-semibold text-gray-900 dark:text-white" aria-label="NIK" for="nik">NIK</label>
-					<input type="number" class="text-md text-center font-medium text-black-900 dark:text-white focus:outline-sky-500 focus:ring-1" name="nik" id="nik" value="{{ $user->nik}}" readonly aria-readonly="true">
-					<!-- Name -->
-					<label class="text-lg font-semibold text-gray-900 dark:text-white" aria-label="Name" for="name">Name</label>
-					<input type="text" class="text-md text-center font-medium text-black-900 dark:text-white focus:outline-sky-500 focus:ring-1" name="name" id="name" value="{{ $user->name }}" readonly aria-readonly="true">
+					<x-forms.read-profile label="NIK" for="nik" type="number" name="nik" id="nik" value="{{ $user->nik }}">NIK</x-forms.read-profile>
+					<!-- name -->
+					<x-forms.read-profile label="Name" for="name" type="text" name="name" id="name" value="{{ $user->name }}">Name</x-forms.read-profile>
 					<!-- place of birth -->
-					<label class="text-lg font-semibold text-gray-900 dark:text-white" aria-label="Place of Birth" for="place_of_birth">Place Of Birth</label>
-					<input type="text" class="text-md text-center font-medium text-black-900 dark:text-white focus:outline-sky-500 focus:ring-1" name="place_of_birth" id="place_of_birth" value="{{ $user->place_of_birth }}" readonly aria-readonly="true">
+					<x-forms.read-profile label="PLace of Birth" for="place_of_birth" type="text" name="place_of_birth" id="place_of_birth" value="{{ $user->place_of_birth }}">Place of Birth</x-forms.read-profile>
 					<!-- date of birth -->
-					<label class="text-lg font-semibold text-gray-900 dark:text-white" aria-label="Date of birth" for="date_of_birth">Date Of Birth</label>
-					<input type="text" class="text-md text-center font-medium text-black-900 dark:text-white focus:outline-sky-500 focus:ring-1" name="date_of_birth" id="date_of_birth" value="{{ $user->date_of_birth_formatted }}" readonly aria-readonly="true">
+					<x-forms.read-profile label="Date of Birth" for="date_of_birth" type="text" name="date_of_birth" id="date_of_birth" value="{{ $user->date_of_birth }}">Date of Birth</x-forms.read-profile>
 					<!-- gender -->
-					<label class="text-lg font-semibold text-gray-900 dark:text-white" aria-label="Gender" for="gender">Gender</label>
-					<input type="text" class="text-md text-center font-medium text-black-900 dark:text-white focus:outline-sky-500 focus:ring-1" name="gender" id="gender" value="{{ $user->gender }}" readonly aria-readonly="true">
+					<x-forms.read-profile label="Gender" fof="gender" type="text" name="gender" id="gender" value="{{ $user->gender }}">Gender</x-forms.read-profile>
 					<!-- address -->
-					<label class="text-lg font-semibold text-gray-900 dark:text-white" aria-label="Address" for="address">Address</label>
-					<input type="text" class="text-md overflow-x-auto font-medium text-black-900 dark:text-white focus:outline-sky-500 focus:ring-1" name="address" id="address" value="{{ $user->address }}" readonly aria-readonly="true">
+					<x-forms.read-profile label="Address" for="address" type="text" name="address" id="address" value="{{ $user->address }}">Address</x-forms.read-profile>
 					<!-- religion -->
-					<label class="text-lg font-semibold text-gray-900 dark:text-white" aria-label="Religion" for="religion">Religion</label>
-					<input type="text" class="text-md text-center font-medium text-black-900 dark:text-white focus:outline-sky-500 focus:ring-1" name="religion" id="religion" value="{{ $user->religion }}" readonly aria-readonly="true">
+					<x-forms.read-profile label="Religion" for="religion" type="text" name="religion" id="religion" value="{{ $user->religion }}">Religion</x-forms.read-profile>
 					<!-- marital status -->
-					<label class="text-lg font-semibold text-gray-900 dark:text-white" aria-label="Marital Status" for="marital_status">Marital Status</label>
-					<input type="text" class="text-md text-center font-medium text-black-900 dark:text-white focus:outline-sky-500 focus:ring-1" name="marital_status" id="marital_status" value="{{ $user->marital_status }}" readonly aria-readonly="true">
+					<x-forms.read-profile label="Marital Status" for="marital_status" type="text" name="marital_status" id="marital_status" value="{{ $user->marital_status }}">Marital Status</x-forms.read-profile>
 					<!-- job -->
-					<label class="text-lg font-semibold text-gray-900 dark:text-white" aria-label="Job" for="job">Job</label>
-					<input type="text" class="text-md text-center font-medium text-black-900 dark:text-white focus:outline-sky-500 focus:ring-1" name="job" id="job" value="{{ $user->job }}" readonly aria-readonly="true">
+					<x-forms.read-profile label="Job" for="job" type="text" name="job" id="job" value="{{ $user->job }}">Job</x-forms.read-profile>
 					<!-- email -->
-					<label class="text-lg font-semibold text-gray-900 dark:text-white" aria-label="Email" for="email">Email</label>
-					<input type="email" class="text-md text-center font-medium text-black-900 dark:text-white focus:outline-sky-500 focus:ring-1" name="email" id="email" value="{{ $user->email }}" readonly aria-readonly="true">
+					<x-forms.read-profile label="Email" for="email" type="email" name="email" id="email" value="{{ $user->email }}">Email</x-forms.read-profile>
 					<!-- phone -->
-					<label class="text-lg font-semibold text-gray-900 dark:text-white" aria-label="Phone" for="phone">Phone</label>
-					<input type="tel" class="text-md text-center font-medium text-black-900 dark:text-white focus:outline-sky-500 focus:ring-1" name="phone" id="phone" value="{{ $user->phone }}" readonly aria-readonly="true">
+					<x-forms.read-profile label="Phone" for="phone" type="tel" name="phone" id="phone" value="{{ $user->phone }}">Phone</x-forms.read-profile>
 					<!-- blood type -->
-					<label class="text-lg font-semibold text-gray-900 dark:text-white" aria-label="Blood Type" for="blood_type">Blood Type</label>
-					<input type="text" class="text-md text-center font-medium text-black-900 dark:text-white focus:outline-sky-500 focus:ring-1" name="blood_type" id="blood_type" value="{{ $user->blood_type }}" readonly aria-readonly="true">
+					<x-forms.read-profile label="Blood Type" for="blood_type" type="text" name="blood_type" id="blood_type" value="{{ $user->blood_type }}">Blood Type</x-forms.read-profile>
 				</div>
+			</div>
 		</div>
 	</section>
 </x-homes.layout>

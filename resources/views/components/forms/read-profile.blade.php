@@ -1,0 +1,2 @@
+<label class="text-lg font-semibold text-gray-900 dark:text-white" aria-label="{{ $label }}" for="{{ $name }}">{{ $slot }}</label>
+<input type="{{ $type }}" class="text-md overflow-x-auto text-center font-medium text-black-900 dark:text-white focus:outline-sky-500 focus:ring-1" name="{{ $name }}" id="{{ $id }}" value="{{ $value }}" readonly aria-readonly="true">
