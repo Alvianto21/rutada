@@ -18,7 +18,7 @@ class AdminUserProfileController extends Controller
 
     //table users
     public function index() {
-        $users = User::all();
+        $users = User::paginate(10);
         return view('admin.user.index', [
             'title' => 'User Accounts',
             'users' => $users

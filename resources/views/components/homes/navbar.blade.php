@@ -82,6 +82,10 @@
           @auth
             <x-homes.navlink href="/dashboard" :active="request()->is('dashboard')">Dashboard</x-homes.navlink>
             <x-homes.navlink href="/Profile" :active="(request()->is('profile'))">Profile</x-homes.navlink>
+
+            @can('admin')
+              <x-homes.navlink href="/users" :active="request()->is('users')">Users</x-homes.navlink>
+            @endcan
           @endauth
         </div>
         <div class="border-t border-gray-700 pt-4 pb-3">
