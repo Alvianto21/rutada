@@ -6,6 +6,7 @@ export default {
     "./resources/**/*.js",
     "./resources/**/*.vue",
     "./node_modules/flowbite/**/*.js",
+    './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
   ],
   theme: {
     extend: {
@@ -37,5 +38,8 @@ export default {
   plugins: [
     require('flowbite/plugin'),
   ],
+  variants: {
+    tableLayout: ['hover', 'focus'],
+  }
 }
 
