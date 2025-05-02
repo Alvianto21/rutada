@@ -17,11 +17,21 @@ class AdminUserProfileController extends Controller
     }
 
     //table users
-    public function index() {
-        $users = User::paginate(10);
+    public function index(Request $request) {
+        //get search query
+        if ($request->has('search')) {
+            $search = $request->query('search');
+            //search users
+            $users = User::search($search)->paginate(10)->withQueryString();
+        }
+        else {
+            $users = User::paginate(10)->withQueryString();
+        }
+
+
         return view('admin.user.index', [
             'title' => 'User Accounts',
-            'users' => $users
+            'users' => $users,
         ]);
     }
 }

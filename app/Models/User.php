@@ -73,4 +73,14 @@ class User extends Authenticatable
     {
         return \Carbon\Carbon::parse($this->date_of_birth)->format('d-m-Y');
     }
+
+    /**
+     * the attributes for search feature
+     */
+    public function scopeSearch($query, $search)
+    {
+        return $query->where('nik', 'like', '%' . $search . '%')
+                     ->orWhere('name', 'like', '%' . $search . '%')
+                     ->orWhere('email', 'like', '%' . $search . '%');
+    }
 }
