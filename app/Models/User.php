@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -77,10 +79,25 @@ class User extends Authenticatable
     /**
      * the attributes for search feature
      */
-    public function scopeSearch($query, $search)
+    public function scopeSearch(Builder $query, $search)
     {
         return $query->where('nik', 'like', '%' . $search . '%')
                      ->orWhere('name', 'like', '%' . $search . '%')
                      ->orWhere('email', 'like', '%' . $search . '%');
+    }
+
+    /**
+     * the attributes for filter feature
+     */
+    public function scopeFilter(Builder $query, array $filter){
+        $query->when($filter['gender'] ?? false, function($query, $gender) {
+            return $query->where('gender', $gender);
+        })->when($filter['marital_status'] ?? false, function($query, $marital_status) {
+            return $query->where('marital_status', $marital_status);
+        })->when($filter['blood_type'] ?? false, function($query, $blood_type) {
+            return $query->where('blood_type', $blood_type);
+        })->when($filter['religion'] ?? false, function($query, $religion) {
+            return $query->where('religion', $religion);
+        });
     }
 }
