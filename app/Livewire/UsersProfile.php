@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class UsersProfile extends Component
 {
@@ -13,6 +14,9 @@ class UsersProfile extends Component
     //for default sort
     public $colname= 'id';
     public $sortdir = 'asc';
+
+    //query string
+    protected $queryString = ['search', 'sortColumn', 'sortDirection'];
 
     //sort function
     public function sort($colname) {
@@ -24,6 +28,16 @@ class UsersProfile extends Component
     public function search() {
         $this->resetPage();
     }
+
+    //pagination
+    use WithPagination;
+
+    protected $paginationTheme = 'flowbite';
+    
+    public function paginationView(){
+        return 'vendor.pagination.flowbite';
+    }
+    
 
     public function render()
     {

@@ -29,6 +29,5 @@
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/9dfd87037d.js" crossorigin="anonymous"></script>
 
-    @stack('scripts')
-</body>
+  </body>
 </html>
