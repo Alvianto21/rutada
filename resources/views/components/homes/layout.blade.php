@@ -10,6 +10,8 @@
     <!-- tailwindcss-->
     @vite('resources/css/app.css', 'resources/js/app.js')
 
+    @stack('scripts')
+
     <title>Rutada | {{ $title }}</title>
 </head>
 <body class="h-full">
