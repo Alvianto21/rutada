@@ -30,7 +30,7 @@ class User extends Authenticatable
         'phone',
         'photo',
         'job',
-        'marotal_status',
+        'marital_status',
         'gender',
         'religion',
         'is_admin',
