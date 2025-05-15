@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use App\Models\User;
 
 class AdminUserProfileController extends Controller
 {
@@ -17,7 +18,7 @@ class AdminUserProfileController extends Controller
     }
 
     //table users
-    public function index(Request $request) {
-        return view('admin.user.index', ['title' => 'User Accounts',]);
+    public function index() {
+        return view('admin.user.index', ['title' => 'User Accounts', ]);
     }
 }

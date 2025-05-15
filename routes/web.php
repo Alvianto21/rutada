@@ -16,7 +16,7 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('l
 
 //authenticated user routes
 Route::middleware(['auth', 'verified'])->group(function (){
-    Route::get('/dashboard', [DasboardController::class, 'index'])->name('dashboard');
+    // Route::get('/dashboard', [DasboardController::class, 'index'])->name('dashboard');
 
     Route::get('/profile', [DasboardController::class, 'profile'])->name('profile');
 

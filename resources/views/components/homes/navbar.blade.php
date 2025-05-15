@@ -12,7 +12,7 @@
                 <x-homes.navlink href="/contact" :active="request()->is('contact')">Contact</x-homes.navlink>
                 
                 @auth
-                    <x-homes.navlink href="/dashboard" :active="request()->is('dashboard')">Dashboard</x-homes.navlink>
+                    {{-- <x-homes.navlink href="/dashboard" :active="request()->is('dashboard')">Dashboard</x-homes.navlink> --}}
                     <x-homes.navlink href="/profile" :active="(request()->is('profile'))">Profile</x-homes.navlink>
 
                     @can('admin')
@@ -30,7 +30,12 @@
                   <button type="button" @click="isOpen = !isOpen" class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                     <span class="absolute -inset-1.5"></span>
                     <span class="sr-only">Open user menu</span>
-                    <img class="size-8 rounded-full" src="{{ asset('img/guest_user_profile.jpg') }}" alt="Image by studiogstock on Freepik, businessman-character-avatar-isolated">
+                    <!-- user profile for authenticated user -->
+                    @if (Auth::user() && Auth::user()->photo)
+                        <img class="size-8 rounded-full" src="{{ asset('storage/' . Auth::user()->photo) }}" alt="{{ Auth::user()->name }}">
+                    @else
+                        <img class="size-8 rounded-full" src="{{ asset('img/guest_user_profile.jpg') }}" alt="Image by studiogstock on Freepik, businessman-character-avatar-isolated">
+                    @endif
                   </button>
                 </div>
   
@@ -44,7 +49,7 @@
                 <!-- Active: "bg-gray-100 outline-hidden", Not Active: "" -->
                 @auth                   
                 <x-Homes.navlink-user href="/profile" :active="request()->is('profile')" id="user-menu-item-0">Your Profile</x-Homes.navlink-user>
-                <x-Homes.navlink-user href="/dashboard" :active="request()->is('dashboard')" id="user-menu-item-0">Dashboard</x-Homes.navlink-user>
+                {{-- <x-Homes.navlink-user href="/dashboard" :active="request()->is('dashboard')" id="user-menu-item-0">Dashboard</x-Homes.navlink-user> --}}
                 <form action="{{ route('logout') }}" method="post">
                   @csrf
                   <button type="submit" class="block px-4 py-2 text-sm text-gray-700">Sign out</button>
@@ -80,7 +85,7 @@
           <x-homes.navlink href="/contact" :active="request()->is('contact')">Contact</x-homes.navlink>
 
           @auth
-            <x-homes.navlink href="/dashboard" :active="request()->is('dashboard')">Dashboard</x-homes.navlink>
+            {{-- <x-homes.navlink href="/dashboard" :active="request()->is('dashboard')">Dashboard</x-homes.navlink> --}}
             <x-homes.navlink href="/Profile" :active="(request()->is('profile'))">Profile</x-homes.navlink>
 
             @can('admin')
@@ -101,7 +106,7 @@
           <div class="mt-3 space-y-1 px-2">
             @auth               
             <a href="/profile" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your Profile</a>
-            <a href="/dashboard" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Dashboard</a>
+            {{-- <a href="/dashboard" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Dashboard</a> --}}
             <form action="{{ route('logout') }}" method="post">
               @csrf
               <button type="submit" class="rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</button>

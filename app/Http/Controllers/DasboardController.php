@@ -9,7 +9,7 @@ class DasboardController extends Controller
 {
     //dashboard page
     public function index() {
-        return view('dashboard.index', ['title' => 'Dashboard']);
+        return view('dashboard.index', ['title' => 'Dashboard', 'user' => Auth::user()]);
     }
 
     //profile page
