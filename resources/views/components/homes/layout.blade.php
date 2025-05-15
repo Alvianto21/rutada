@@ -12,12 +12,12 @@
 
     @stack('scripts')
 
-    <title>Rutada | {{ $title }}</title>
+    <title>Rutada | {{ $title ?? 'Default Title' }}</title>
 </head>
 <body class="h-full">
     <div class="min-h-full">
         <x-homes.navbar></x-homes.navbar>
-        <x-homes.header>{{ $title }}</x-homes.header>
+        <x-homes.header>{{ $title ?? 'Default Title' }}</x-homes.header>
         <main>
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
               <!-- Main content -->
