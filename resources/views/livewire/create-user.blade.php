@@ -4,22 +4,17 @@
         <form enctype="multipart/form-data" wire:submit.prevent="createUser">
             @csrf
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                <div class="mb-3">
-                    <div wire:loading wire:target="photo">Uploading...</div>    
-                    @if ($photo)
-                        Photo Preview:
-                        <img src="{{ $photo->temporaryUrl() }}">
-                    @endif
-                    <x-forms.photo-create-user label="Upload Photo" name="photo" type="file" id="photo" wire:model="photo">Upload Photo</x-forms.photo-create-user>
+                <div class="w-full">
+                    <x-forms.create-user label="Your NIK" name="nik" type="tel" id="nik" placeholder="Your NIK" wire:model="nik">Your NIK</x-forms.create-user>
                 </div>
                 <div class="sm:col-span-2">
                     <x-forms.create-user label="Your Name" name="name" type="text" id="name" placeholder="Your name" wire:model="name">Your Name</x-forms.create-user>
                 </div>
                 <div class="w-full">
-                    <x-forms.create-user label="Your NIK" name="nik" type="tel" id="nik" placeholder="Your NIK" wire:model="nik">Your NIK</x-forms.create-user>
+                    <x-forms.create-user label="Your Email" name="email" type="email" id="email" placeholder="Your Email" wire:model.live="email">Your Email</x-forms.create-user>
                 </div>
                 <div class="w-full">
-                    <x-forms.create-user label="Your Email" name="email" type="email" id="email" placeholder="Your Email" wire:model.live="email">Your Email</x-forms.create-user>
+                    <x-forms.create-user label="Your Username" name="username" type="text" id="username" placeholder="Your Username" wire:model="username">Your Username</x-forms.create-user>
                 </div>
                 <div class="w-full">
                     <x-forms.create-user label="Place of Birth" name="place_of_birth" type="text" id="place_of_birth" placeholder="Place of Birth" wire:model="place_of_birth">Place of Birth</x-forms.create-user>
@@ -38,17 +33,25 @@
                     <x-forms.create-user label="Your Job" name="job" type="text" id="job" placeholder="Your Job" wire:model="job">Your Job</x-forms.create-user>
                 </div>
                 <div>
-                    <x-forms.select-create-user label="Gender" name="gender" id="gender" :options="['male' => 'Male', 'female' => 'Female']" wire:model="gender">Gender</x-forms.select-create-user>
+                    <x-forms.select-create-user label="Gender" name="gender" id="gender" :options="['Male' => 'Male', 'Female' => 'Female']" wire:model="gender">Gender</x-forms.select-create-user>
                 </div>
                 <div>
-                    <x-forms.select-create-user label="Religion" name="religion" id="religion" :options="['islam' => 'Islam', 'kristen' => 'Kristen', 'katolik' => 'Katolik', 'hindu' => 'Hindu', 'buddha' => 'Buddha', 'other' => 'Other']" wire:model="religion">Religion</x-forms.select-create-user>
+                    <x-forms.select-create-user label="Religion" name="religion" id="religion" :options="['Islam' => 'Islam', 'Kristen' => 'Kristen', 'Katolik' => 'Katolik', 'Hindu' => 'Hindu', 'Buddha' => 'Buddha', 'Other' => 'Other']" wire:model="religion">Religion</x-forms.select-create-user>
                 </div>
                 <div>
-                    <x-forms.select-create-user label="Marital Status" name="marital_status" id="marital_status" :options="['single' => 'Single', 'married' => 'Married']" wire:model="marital_status">Marital Status</x-forms.select-create-user>
+                    <x-forms.select-create-user label="Marital Status" name="marital_status" id="marital_status" :options="['Single' => 'Single', 'Married' => 'Married']" wire:model="marital_status">Marital Status</x-forms.select-create-user>
                 </div>
                 <div>
                     <x-forms.select-create-user label="Blood Type" name="blood_type" id="blood_type" :options="['A' => 'A', 'B' => 'B', 'AB' => 'AB', 'O' => 'O']" wire:model="blood_type">Blood Type</x-forms.select-create-user>
                 </div> 
+            </div>
+            <div class="mb-3 mt-4">
+                <div wire:loading wire:target="photo">Uploading...</div>    
+                @if ($photo)
+                    Photo Preview:
+                    <img src="{{ $photo->temporaryUrl() }}">
+                @endif
+                <x-forms.photo-create-user label="Upload Photo" name="photo" type="file" id="photo" wire:model="photo">Upload Photo</x-forms.photo-create-user>
             </div>
             <div class="mt-4 w-full">
                 <x-forms.create-user label="Password" name="password" type="password" id="password" placeholder="Your password" wire:model="password">Password</x-forms.create-user>

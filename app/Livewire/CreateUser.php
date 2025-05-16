@@ -63,6 +63,9 @@ class CreateUser extends Component
     public $password= '';
     public $is_admin = false;
 
+    #[Validate('required|string|max:255')]
+    public $username ='';
+
     //validation for photo
     public function updatedPhoto()
     {

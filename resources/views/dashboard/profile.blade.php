@@ -17,6 +17,10 @@
 					<x-forms.read-profile label="NIK" for="nik" type="number" name="nik" id="nik" value="{{ $user->nik }}">NIK</x-forms.read-profile>
 					<!-- name -->
 					<x-forms.read-profile label="Name" for="name" type="text" name="name" id="name" value="{{ $user->name }}">Name</x-forms.read-profile>
+					<!-- username -->
+					<x-forms.read-profile label="Username" for="username" type="text" name="username" id="username" value="{{ $user->username }}">Username</x-forms.read-profile>
+					<!-- email -->
+					<x-forms.read-profile label="Email" for="email" type="email" name="email" id="email" value="{{ $user->email }}">Email</x-forms.read-profile>
 					<!-- place of birth -->
 					<x-forms.read-profile label="PLace of Birth" for="place_of_birth" type="text" name="place_of_birth" id="place_of_birth" value="{{ $user->place_of_birth }}">Place of Birth</x-forms.read-profile>
 					<!-- date of birth -->
@@ -31,8 +35,6 @@
 					<x-forms.read-profile label="Marital Status" for="marital_status" type="text" name="marital_status" id="marital_status" value="{{ $user->marital_status }}">Marital Status</x-forms.read-profile>
 					<!-- job -->
 					<x-forms.read-profile label="Job" for="job" type="text" name="job" id="job" value="{{ $user->job }}">Job</x-forms.read-profile>
-					<!-- email -->
-					<x-forms.read-profile label="Email" for="email" type="email" name="email" id="email" value="{{ $user->email }}">Email</x-forms.read-profile>
 					<!-- phone -->
 					<x-forms.read-profile label="Phone" for="phone" type="tel" name="phone" id="phone" value="{{ $user->phone }}">Phone</x-forms.read-profile>
 					<!-- blood type -->

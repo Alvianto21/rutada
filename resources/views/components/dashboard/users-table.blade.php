@@ -19,6 +19,16 @@
                         <x-symbol.table-sort></x-symbol.table-sort>
                     </div>
                 </th>
+                <th scope="col" class="px-6 py-3">
+                    <div class="flex items-center">
+                        Email
+                    </div>
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <div class="flex items-center">
+                        Username
+                    </div>
+                </th>
                 <th scope="col" class="px-6 py-3" wire:click="sort('place_of_birth')">
                     <div class="flex items-center">
                         PLace of Birth
@@ -43,11 +53,6 @@
                 <th scope="col" class="px-6 py-3">
                     <div class="flex items-center">
                         Phone
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        Email
                     </div>
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -90,6 +95,12 @@
                     {{ $user->name }}
                 </td>
                 <td class="px-6 py-4">
+                    {{ $user->email }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ $user->username }}
+                </td>
+                <td class="px-6 py-4">
                     {{ $user->place_of_birth }}
                 </td>
                 <td class="px-6 py-4">
@@ -103,9 +114,6 @@
                 </td>
                 <td class="px-6 py-4">
                     {{ $user->phone }}
-                </td>
-                <td class="px-6 py-4">
-                    {{ $user->email }}
                 </td>
                 <td class="px-6 py-4">
                     {{ $user->job }}
