@@ -26,6 +26,7 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'username' => fake()->unique()->userName(),
             'nik' => fake()->unique()->numerify('################'),
             'place_of_birth' => fake()->city(),
             'date_of_birth' => fake()->date('Y-m-d'),
