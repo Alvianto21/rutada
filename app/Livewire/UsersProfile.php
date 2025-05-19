@@ -3,8 +3,11 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Livewire\Attributes\Renderless;
 
 class UsersProfile extends Component
 {
@@ -51,6 +54,16 @@ class UsersProfile extends Component
         return 'vendor.pagination.flowbite';
     }
     
+    //show user details
+    public $selectedUser = null;
+
+    #[On('showUser')]
+    public function loadUser($userId)
+    {
+        Log::info('Showing user with ID:'. $userId);
+        $this->selectedUser = User::find($userId);
+        Log::info('Selected user data:'. json_encode($this->selectedUser));
+    }
 
     public function render()
     {
@@ -80,8 +93,9 @@ class UsersProfile extends Component
             $query->where('religion', $this->religionFilter);
         }
 
-        return view('livewire.users-profile',[
+        return view('livewire.users-profile', [
             'users' => $query->orderBy($this->colname, $this->sortdir)->paginate(10)->withQueryString(),
+            'selectedUser' => $this->selectedUser
         ]);
     }
 }
