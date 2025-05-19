@@ -60,9 +60,9 @@ class UsersProfile extends Component
     #[On('showUser')]
     public function loadUser($userId)
     {
-        Log::info('Showing user with ID:'. $userId);
+        // Log::info('Showing user with ID:'. $userId);
         $this->selectedUser = User::find($userId);
-        Log::info('Selected user data:'. json_encode($this->selectedUser));
+        // Log::info('Selected user data:'. json_encode($this->selectedUser));
     }
 
     public function render()
