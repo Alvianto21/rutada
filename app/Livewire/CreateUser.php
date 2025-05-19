@@ -6,12 +6,10 @@ use Carbon\Carbon;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Log;
 
 //layout component
-#[Layout('components.homes.layout')]
 class CreateUser extends Component
 {
     //title
