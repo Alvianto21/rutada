@@ -47,7 +47,7 @@
             </div>
             <div class="mb-3 mt-4">
                 <div wire:loading wire:target="photo">Uploading...</div>    
-                @if ($photo)
+                @if ($photo && in_array($photo->getMimeType(), ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/svg+xml']))
                     Photo Preview:
                     <img src="{{ $photo->temporaryUrl() }}">
                 @endif
