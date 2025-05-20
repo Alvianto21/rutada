@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 class CreateUser extends Component
 {
     //title
-    public $title = "Create User";
+    // public $title = "Create User";
      
     //Validation rules
     use WithFileUploads;
