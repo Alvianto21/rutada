@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use Carbon\Carbon;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -56,6 +55,7 @@ class CreateUser extends Component
     
     #[Validate('required|string|max:255')]
     public $password= '';
+    
     public $is_admin = false;
     
     #[Validate('required|string|max:255')]
@@ -98,7 +98,7 @@ class CreateUser extends Component
     
     //layout component
     #[Layout('components.homes.layout', ['title' => 'Create User'])]
-    
+
     public function render()
     {
         return view('livewire.create-user');
