@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Log;
 
@@ -99,6 +100,7 @@ class CreateUser extends Component
         return $this->redirectRoute('users');   
     }
 
+    #[Layout('components.homes.layout', ['title' => 'Create User'])]
     public function render()
     {
         return view('livewire.create-user');
