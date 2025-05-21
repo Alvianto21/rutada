@@ -28,7 +28,7 @@
                     <div class="w-full max-w-md bg-white dark:bg-gray-700 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-600">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">User Detail</h3>
-                            <button wire:click="$set('selectedUser', null)" @click="show = false" type="button" class="text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+                            <button wire:click="$set('selectedUserUsername', null)" @click="show = false" type="button" class="text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                                 </svg>

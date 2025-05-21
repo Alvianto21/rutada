@@ -55,14 +55,17 @@ class UsersProfile extends Component
     }
     
     //show user details
-    public $selectedUser = null;
+    public $selectedUserUsername = null;
 
     #[On('showUser')]
-    public function loadUser($userId)
+    public function loadUser($username)
     {
-        // Log::info('Showing user with ID:'. $userId);
-        $this->selectedUser = User::find($userId);
-        // Log::info('Selected user data:'. json_encode($this->selectedUser));
+        $this->selectedUserUsername = $username;
+    }
+
+    public function getSelectedUserProperty()
+    {
+        return $this->selectedUserUsername ? User::where('username', $this->selectedUserUsername)->first() : null;
     }
 
     public function render()
