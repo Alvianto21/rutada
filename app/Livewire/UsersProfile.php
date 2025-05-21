@@ -57,6 +57,17 @@ class UsersProfile extends Component
     //show user details
     public $selectedUserUsername = null;
 
+    // mount method to receive initial data
+    public function mount($search = '', $genderFilter = '', $maritalStatusFilter = '', $bloodTypeFilter = '', $religionFilter = '', $selectedUserUsername = null)
+    {
+        $this->search = $search;
+        $this->genderFilter = $genderFilter;
+        $this->maritalStatusFilter = $maritalStatusFilter;
+        $this->bloodTypeFilter = $bloodTypeFilter;
+        $this->religionFilter = $religionFilter;
+        $this->selectedUserUsername = $selectedUserUsername;
+    }
+
     #[On('showUser')]
     public function loadUser($username)
     {
