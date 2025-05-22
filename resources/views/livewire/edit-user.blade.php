@@ -46,13 +46,13 @@
                     <x-forms.select-update-user label="Blood Type" name="blood_type" id="blood_type" :options="['A' => 'A', 'B' => 'B', 'AB' => 'AB', 'O' => 'O']" wire:model="blood_type" user="{{ $user->blood_type }}">Blood Type</x-forms.select-update-user>
                 </div>
                 <div>
-                    @if ($photo && in_array($photo->getMimeType(), ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/svg+xml']))
+                    @if ($photo instanceof \Illuminate\Http\UploadedFile && in_array($photo->getMimeType(), ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/svg+xml']))
                     <div wire:loading wire:target="photo">Uploading...</div>
                     Photo Preview:
-                        <img src="{{ $photo->temporaryUrl() }}">                       
+                        <img src="{{ $photo->temporaryUrl() }}" class="m-3">                       
                     @elseif($user->photo)
                         Photo Preview:
-                        <img src="{{ asset('storage/'. $user->photo) }}">
+                        <img src="{{ asset('storage/'. $user->photo) }}" class="m-3">
                     @else
                         <img src="https://ui-avatars.com/api/?name={{ $user->name }}&color=7F9CF5&background=EBF4FF" alt="{{ $user->name }}" class="mb-5">
                     @endif
