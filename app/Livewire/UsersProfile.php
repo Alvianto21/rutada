@@ -37,12 +37,14 @@ class UsersProfile extends Component
     //reset search
     public function search() {
         $this->resetPage();
+        $this->selectedUserUsername = null;
     }
 
     //reset filters
     public function updating($property, $value) {
         if (in_array($property, ['genderFilter', 'maritalStatusFilter', 'bloodTypeFilter', 'religionFilter'])) {
             $this->resetPage();
+            $this->selectedUserUsername = null;
         }
     }
 
@@ -53,6 +55,12 @@ class UsersProfile extends Component
     
     public function paginationView(){
         return 'vendor.pagination.flowbite';
+    }
+
+    // Reset selected user when changing page (pagination)
+    public function updatingPage()
+    {
+        $this->selectedUserUsername = null;
     }
     
     //show user details

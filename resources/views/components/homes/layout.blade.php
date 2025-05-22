@@ -10,7 +10,7 @@
     <!-- tailwindcss-->
     @vite('resources/css/app.css', 'resources/js/app.js')
 
-    @stack('scripts')
+    @stack('styles')
 
     <title>Rutada | {{ $title ?? 'Default Title' }}</title>
 </head>
@@ -25,6 +25,8 @@
             </div>
           </main>
     </div>
+
+    @stack('scripts')
 
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/9dfd87037d.js" crossorigin="anonymous"></script>
