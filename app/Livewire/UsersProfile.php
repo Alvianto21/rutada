@@ -84,10 +84,7 @@ class UsersProfile extends Component
     //delete user
     public function deleteUser($username) {
         // Log::info('DeleteUser called with username: ' . $username);
-        $user = User::where('username', $username)->first();
-
-        //authorize delete user action
-        $this->authorize('delete', $user); 
+        $user = User::where('username', $username)->first(); 
 
         if($user) {
             // Log::info('User found: ' . $user->id);
