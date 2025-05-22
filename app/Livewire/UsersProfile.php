@@ -3,11 +3,12 @@
 namespace App\Livewire;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
-use Livewire\Attributes\Renderless;
+use Livewire\Attributes\Layout;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class UsersProfile extends Component
 {
@@ -68,6 +69,7 @@ class UsersProfile extends Component
         $this->selectedUserUsername = $selectedUserUsername;
     }
 
+    //show user details
     #[On('showUser')]
     public function loadUser($username)
     {
@@ -78,6 +80,36 @@ class UsersProfile extends Component
     {
         return $this->selectedUserUsername ? User::where('username', $this->selectedUserUsername)->first() : null;
     }
+
+    //delete user
+    public function deleteUser($username) {
+        // Log::info('DeleteUser called with username: ' . $username);
+        $user = User::where('username', $username)->first();
+
+        //authorize delete user action
+        $this->authorize('delete', $user); 
+
+        if($user) {
+            // Log::info('User found: ' . $user->id);
+            //if user has photo, delete it
+            if($user->photo) {
+                Log::info('Deleting photo: ' . $user->photo);
+                Storage::disk('public')->delete($user->photo);
+            }
+
+            //delete user
+            $user->delete();
+            // Log::info('User deleted: ' . $user->id);
+            session()->flash('success', 'User deleted successfully!');
+        }
+        else {
+            // Log::info('User not found for username: ' . $username);
+            session()->flash('error', 'User not found!');
+        }
+    }
+
+    //layout component
+    #[Layout('components.homes.layout', ['title' => 'Users Profile'])]
 
     public function render()
     {

@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\AdminUserProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DasboardController;
+use App\Livewire\UsersProfile;
 use App\Livewire\CreateUser;
 use App\Livewire\EditUser;
 
@@ -26,7 +26,7 @@ Route::middleware(['auth', 'verified'])->group(function (){
 
 //admin routes
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
-    Route::get('/users', [AdminUserProfileController::class, 'index'])->name('users');
+    Route::get('/users', UsersProfile::class)->name('users');
 
     Route::get('/users/create', CreateUser::class)->name('users.create');
 
