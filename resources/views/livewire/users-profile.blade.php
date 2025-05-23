@@ -14,7 +14,7 @@
                     <x-forms.filter-users-table id="gender" label="Gender" model="genderFilter" :options="['male' => 'Male', 'female' => 'Female']">Gender</x-forms.filter-users-table>
                     <x-forms.filter-users-table id="religion" label="Religion" model="religionFilter" :options="['islam' => 'Islam', 'kristen' => 'Kristen', 'katolik' => 'Katolik', 'hindu' => 'Hindu', 'buddha' => 'Buddha', 'other' => 'Other']">Religion</x-forms.filter-users-table>
                     <x-forms.filter-users-table id="marital_status" label="Marital Status" model="maritalStatusFilter" :options="['single' => 'Single', 'married' => 'Married']">Marital Status</x-forms.filter-users-table>
-                    <x-forms.filter-users-table id="blood_type" label="Blood Type" model="bloodTypeFilter" :options="['A' => 'A', 'B' => 'B', 'AB' => 'AB', 'O' => 'O']">Bloot Type</x-forms.filter-users-table>
+                    <x-forms.filter-users-table id="blood_type" label="Blood Type" model="bloodTypeFilter" :options="['A' => 'A', 'B' => 'B', 'AB' => 'AB', 'O' => 'O']">Blood Type</x-forms.filter-users-table>
                 </div>
             </div>
 

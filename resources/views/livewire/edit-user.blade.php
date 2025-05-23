@@ -37,7 +37,7 @@
                     <x-forms.select-update-user label="Gender" name="gender" id="gender" :options="['Male' => 'Male', 'Female' => 'Female']" wire:model="gender" user="{{ $user->gender }}">Gender</x-forms.select-update-user>
                 </div>
                 <div>
-                    <x-forms.select-update-user label="Religion" name="religion" id="religion" :options="['Islam' => 'Islam', 'Kristen' => 'Kristen', 'Katolik' => 'Katolik', 'Hindu' => 'Hindu', 'Buddha' => 'Buddha', 'Other' => 'Other']" wire:model="religion" user="{{ $user->religion }}">REligion</x-forms.select-update-user>
+                    <x-forms.select-update-user label="Religion" name="religion" id="religion" :options="['Islam' => 'Islam', 'Kristen' => 'Kristen', 'Katolik' => 'Katolik', 'Hindu' => 'Hindu', 'Buddha' => 'Buddha', 'Other' => 'Other']" wire:model="religion" user="{{ $user->religion }}">Religion</x-forms.select-update-user>
                 </div>
                 <div>
                     <x-forms.select-update-user label="Marital Status" name="marital_status" id="marital_status" :options="['Single' => 'Single', 'Married' => 'Married']" wire:model="marital_status" user="{{ $user->marital_status }}">Marital Status</x-forms.select-update-user>

@@ -96,7 +96,12 @@
         <div class="border-t border-gray-700 pt-4 pb-3">
           <div class="flex items-center px-5">
             <div class="shrink-0">
-              <img class="size-10 rounded-full" src="img/guest_user_profile.jpg" alt="Image by studiogstock on Freepik, businessman-character-avatar-isolated">
+              <!-- user profile for authenticated user -->
+              @if (Auth::user() && Auth::user()->photo)
+                <img class="size-8 rounded-full" src="{{ asset('storage/' . Auth::user()->photo) }}" alt="{{ Auth::user()->name }}">
+              @else
+                <img class="size-8 rounded-full" src="{{ asset('img/guest_user_profile.jpg') }}" alt="Image by studiogstock on Freepik, businessman-character-avatar-isolated">
+              @endif
             </div>
             <div class="ml-3">
               <div class="text-base/5 font-medium text-white">Guest User</div>
