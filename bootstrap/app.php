@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => App\Http\Middleware\isAdmin::class
         ]);
+        $middleware->trustHosts(at: fn () => config('app.trusted_hosts'));
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
