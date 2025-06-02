@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\DasboardController;
 use App\Livewire\UsersProfile;
 use App\Livewire\CreateUser;
@@ -13,7 +14,12 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/contact', [HomeController::class, 'contact']);
 
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+//guest routes
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+
+    Route::get('/forget-password', [PasswordController::class, 'forgetPassword'])->name('password.request');
+});
 
 //authenticated user routes
 Route::middleware(['auth', 'verified'])->group(function (){
