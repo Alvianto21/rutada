@@ -2,6 +2,8 @@
 
 	<x-slot:title>{{ $title }}</x-slot:title>
 
+	<x-auth-session-status class="mb-4" :status="session('status')" />
+
 	<section class="bg-gray-50 dark:bg-gray-900">
   		<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       		<div class="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
@@ -11,7 +13,7 @@
 				<p class="mb-4 text-sm font-normal text-gray-500 dark:text-gray-400">
 			  		Enter your email address and we will send you a link to reset your password.
 				</p>
-          		<form class="mt-4 space-y-4 lg:mt-5 md:space-y-5" action="#">
+          		<form class="mt-4 space-y-4 lg:mt-5 md:space-y-5" action="" method="POST">
 					@csrf
               		<div>
                   		<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>

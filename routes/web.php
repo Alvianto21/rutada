@@ -19,6 +19,8 @@ Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
     Route::get('/forget-password', [PasswordController::class, 'forgetPassword'])->name('password.request');
+
+    Route::post('/forget-password', [PasswordController::class, 'passwordEmail']);
 });
 
 //authenticated user routes
