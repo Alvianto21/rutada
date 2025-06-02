@@ -24,6 +24,10 @@
               		</div>
               		<button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Reset passwod</button>
           		</form>
+				<p class="m-4 text-sm font-normal text-center text-gray-500 dark:text-gray-400">
+					Remember your password? 
+					<a href="{{ route('login') }}" type="button" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login</a>
+				</p>
       		</div>
   		</div>
 	</section>
@@ -32,4 +36,5 @@
         <!-- alpine js -->
      <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @endpush
+
 </x-homes.layout>
