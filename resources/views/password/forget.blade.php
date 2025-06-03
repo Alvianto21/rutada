@@ -13,7 +13,7 @@
 				<p class="mb-4 text-sm font-normal text-gray-500 dark:text-gray-400">
 			  		Enter your email address and we will send you a link to reset your password.
 				</p>
-          		<form class="mt-4 space-y-4 lg:mt-5 md:space-y-5" action="" method="POST">
+          		<form class="mt-4 space-y-4 lg:mt-5 md:space-y-5" action="{{ route('password.request') }}" method="POST">
 					@csrf
               		<div>
                   		<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
