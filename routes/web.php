@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\DasboardController;
 use App\Livewire\UsersProfile;
 use App\Livewire\CreateUser;
@@ -18,13 +19,13 @@ Route::get('/contact', [HomeController::class, 'contact']);
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
-    Route::get('/forget-password', [PasswordController::class, 'forgetPassword'])->name('password.request');
+    Route::get('/forget-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
 
-    Route::post('/forget-password', [PasswordController::class, 'passwordEmail']);
+    Route::post('/forget-password', [PasswordResetLinkController::class, 'store']);
 
-    Route::get('/reset-password/{token}', [PasswordController::class, 'passwordReset'])->name('password.reset');
+    Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])->name('password.reset');
 
-    Route::post('/reset-password', [PasswordController::class, 'confirmPassword'])->name('password.update');
+    Route::post('/reset-password', [NewPasswordController::class, 'store'])->name('password.update');
 });
 
 //authenticated user routes
