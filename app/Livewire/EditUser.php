@@ -100,32 +100,33 @@ class EditUser extends Component
                 //delete old photo
                 Storage::disk('public')->delete($this->user->photo);
             }
-            //store bew photo
+            //store new photo
             $this->user->photo = $this->photo->store('profile-photos', 'public');
         }
 
-        //update user
+        //update user properties from Livewire properties
+        $this->user->fill([
+            'name' => $this->name,
+            'email' => $this->email,
+            'nik' => $this->nik,
+            'place_of_birth' => $this->place_of_birth,
+            'date_of_birth' => $this->date_of_birth,
+            'address' => $this->address,
+            'job' => $this->job,
+            'phone' => $this->phone,
+            'gender' => $this->gender,
+            'religion' => $this->religion,
+            'marital_status' => $this->marital_status,
+            'blood_type' => $this->blood_type,
+            'username' => $this->username,
+        ]);
+
+        //update password if provided
         if($this->password) {
             $this->user->password = bcrypt($this->password);
         }
 
-        User::where('id', $this->user->id)->update($this->user->only([
-            'name',
-            'email',
-            'nik',
-            'place_of_birth',
-            'date_of_birth',
-            'address',
-            'job',
-            'phone',
-            'photo',
-            'gender',
-            'religion',
-            'marital_status',
-            'blood_type',
-            'username',
-            'password'
-        ]));
+        $this->user->save();
 
         //redirect to all users page
         session()->flash('success', 'User account has been updated!');
