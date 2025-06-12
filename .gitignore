@@ -47,3 +47,5 @@
 # *.msm
 # *.msp
 # *.lnk
+### Database ###
+*.dump
