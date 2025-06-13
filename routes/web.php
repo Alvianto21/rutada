@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -45,5 +46,10 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
     Route::get('/users/{user:username}/edit', EditUser::class)->name('users.edit');
 });
+
+//API routes
+Route::prefix('api')->group((function () {
+    Route::get('/user', [UserController::class, 'index'])->name('api.user.index');
+}));
 
 require __DIR__.'/auth.php';
