@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\DasboardController;
+use App\Http\Controllers\UsersController;
+use App\Livewire\Api\Index;
 use App\Livewire\UsersProfile;
 use App\Livewire\CreateUser;
 use App\Livewire\EditUser;
@@ -45,5 +47,8 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
     Route::get('/users/{user:username}/edit', EditUser::class)->name('users.edit');
 });
+
+// API routes
+Route::get('/user', Index::class);
 
 require __DIR__.'/auth.php';
