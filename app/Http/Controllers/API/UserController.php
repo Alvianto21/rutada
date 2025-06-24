@@ -59,7 +59,7 @@ class UserController extends Controller
                 'success' => true,
                 'message' => "User created successfully",
                 'data' => $user
-            ], 200);
+            ], 201);
         } else {
             return response()->json([
                 'success' => false,
