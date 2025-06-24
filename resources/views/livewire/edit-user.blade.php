@@ -56,7 +56,7 @@
                     @else
                         <img src="https://ui-avatars.com/api/?name={{ $user->name }}&color=7F9CF5&background=EBF4FF" alt="{{ $user->name }}" class="mb-5">
                     @endif
-                    <x-forms.photo-create-user label="Upload Photo" name="photo" type="file" id="photo" wire:model="photo">Upload Photo</x-forms.photo-create-user>
+                    <x-forms.photo-create-user label="Upload Photo" name="photo" type="file" id="photo" wire:model="photo" ero="photo">Upload Photo</x-forms.photo-create-user>
                 </div>
                 <div class="sm:col-span-2">
                     <x-forms.password-update-user label="Password" name="password" type="password" id="password" placeholder="Your password" wire:model="password">Password</x-forms.password-update-user>

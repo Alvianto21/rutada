@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\UsersController;
+use App\Livewire\Api\CreateUser as ApiCreateUser;
 use App\Livewire\Api\Index;
 use App\Livewire\UsersProfile;
 use App\Livewire\CreateUser;
@@ -49,6 +50,8 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 });
 
 // API routes
-Route::get('/user', Index::class);
+Route::get('/user', Index::class)->name('user.index');
+
+Route::get('/user/create', ApiCreateUser::class)->name('user.create');
 
 require __DIR__.'/auth.php';

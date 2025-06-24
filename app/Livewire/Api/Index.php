@@ -7,7 +7,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
-// use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 
 class Index extends Component
@@ -29,6 +28,7 @@ class Index extends Component
 
     public function render()
     {
+        // setup connection
         $client = new Client();
         $url = "http://rutada.test:8080/api/user";
         $response = $client->request('GET', $url, [

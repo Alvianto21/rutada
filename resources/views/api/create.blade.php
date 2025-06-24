@@ -1,6 +1,6 @@
 <x-homes.layout>
-	
-    <livewire:api.index></livewire:api.index>
+
+	<livewire:api.create-user></livewire:api.create-user>
 
     <!--livewire assets -->
 	@push('styles')
