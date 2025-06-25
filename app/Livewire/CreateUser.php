@@ -58,7 +58,7 @@ class CreateUser extends Component
     
     public $is_admin = false;
     
-    #[Validate('required|string|max:255')]
+    #[Validate('required|string|max:255|unique:users,username')]
     public $username ='';
     
     //validation for photo

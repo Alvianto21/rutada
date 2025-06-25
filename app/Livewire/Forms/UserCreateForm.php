@@ -57,7 +57,7 @@ class UserCreateForm extends Form
 
     public $is_admin = false;
 
-    #[Validate('required|string|max:255')]
+    #[Validate('required|string|max:255|unique:users,username')]
     public $username = '';
 
     // validate data
