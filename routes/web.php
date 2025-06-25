@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Livewire\Api\ShowUser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -53,5 +54,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 Route::get('/user', Index::class)->name('user.index');
 
 Route::get('/user/create', ApiCreateUser::class)->name('user.create');
+
+Route::get('/user/{user}', ShowUser::class)->name('user.show');
 
 require __DIR__.'/auth.php';
