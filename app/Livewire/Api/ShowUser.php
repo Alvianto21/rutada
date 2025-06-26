@@ -17,7 +17,8 @@ class ShowUser extends Component
         // get user data from API
         $client = new Client();
         $url = "http://rutada.test:8080/api/user/{$user}";
-        $response = $client->request('GET', $url, [
+        try {
+            $response = $client->request('GET', $url, [
             'headers' => [
                 'Accept' => "application/json",
                 'Content-Type' => 'application/json'
@@ -26,10 +27,8 @@ class ShowUser extends Component
 
         // check if the response is successful
         if ($response->getStatusCode() !== 200) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to fetch user data'
-            ], $response->getStatusCode());
+            session()->flash('error', 'Failed to fetch user data ' . $response->getStatusCode());
+            $this->redirect(Index::class);
         }
         
         // decode the JSON response
@@ -37,6 +36,10 @@ class ShowUser extends Component
 
         // set data user to component property
         $this->userData = $data['data'];
+        } catch (\Exception $e) {
+            session()->flash('error', 'Failed to fetch user data: '. $e->getMessage());
+            $this->redirect(Index::class);
+        }
     }
 
     //layout component
