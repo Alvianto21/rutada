@@ -56,7 +56,7 @@
                                     class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
                             </li>
                             <li>
-                                <a href="#"
+                                <a href="{{ route('user.edit', ['user' => $user['id']]) }}"
                                     class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                             </li>
                         </ul>

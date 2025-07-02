@@ -7,7 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\DasboardController;
-use App\Http\Controllers\UsersController;
+use App\Livewire\Api\EditUser as ApiEditUser;
 use App\Livewire\Api\CreateUser as ApiCreateUser;
 use App\Livewire\Api\Index;
 use App\Livewire\UsersProfile;
@@ -56,5 +56,7 @@ Route::get('/user', Index::class)->name('user.index');
 Route::get('/user/create', ApiCreateUser::class)->name('user.create');
 
 Route::get('/user/{user}', ShowUser::class)->name('user.show');
+
+Route::get('/user/{user}/edit', ApiEditUser::class)->name('user.edit');
 
 require __DIR__.'/auth.php';
