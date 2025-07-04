@@ -25,12 +25,12 @@ class CreateUser extends Component
         $plea = $this->form->store();
 
         // check if validation fails
-        if (!$plea) {
-            Log::error('Form validation failed, aborting user creation.');
-            return;
-        }
+        // if (!$plea) {
+        //     Log::error('Form validation failed, aborting user creation.');
+        //     return;
+        // }
 
-        // create data arry
+        // create data array
         $data = [];
         foreach ($plea as $key => $value) {
             $data[] = [
@@ -57,23 +57,34 @@ class CreateUser extends Component
         // setup connection
         $client = new Client();
         $url = "http://rutada.test:8080/api/user";
-        $response = $client->post($url, [
-            'multipart' => $data,
-            'headers' => [
-                'Accept' => 'application/json'
-            ]
-        ]);
+        try {
+            $response = $client->post($url, [
+                'multipart' => $data,
+                'headers' => [
+                    'Accept' => 'application/json'
+                ]
+            ]);
 
-        // return response
-        if ($response->getStatusCode() === 201) {
-            // return to index page
-            session()->flash('success', 'User created successfully');
-            return redirect()->route('user.index');
-        } else if ($response->getStatusCode() === 200) {
-           // return to index page with warning
-           session()->flash('warning', 'User data processed successfully, but may not have been created or already exists.');
-           return redirect()->route('user.index');  
-        } 
+            // return response
+            if ($response->getStatusCode() === 201) {
+                // return to index page
+                session()->flash('success', 'User created successfully');
+                $this->redirect('/user');
+            } else if ($response->getStatusCode() === 200) {
+                // return to index page with warning
+                session()->flash('warning', 'User data processed successfully, but may not have been created or already exists.');
+                $this->redirect('/user');  
+            } else {
+                // return back to page with error
+                $body = json_decode($response->getBody()->getContents(), true);
+                $mess = $body['message'];
+                session()->flash('error', $mess);
+                return;
+            }
+        } catch (\Exception $e) {
+            session()->flash('error', 'Failed to create user: '. $e->getMessage());
+            return;
+        }
     }
 
     //layout component
