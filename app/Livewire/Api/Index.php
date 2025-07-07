@@ -17,10 +17,38 @@ class Index extends Component
     public $title = "All Users";
     public int $perpage = 5;
 
-
+    // reset pagination when component is mounted or updated
     public function mount()
     {
        $this->resetPage();
+    }
+
+    // delete user function
+    public function deleteUser($id) {
+        // setup connection
+        $client = new Client();
+        $url = "http://rutada.test:8080/api/user/{$id}";
+        try {
+            $response = $client->request('DELETE', $url, [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json'
+                ]
+            ]);
+
+            // check if response is successful
+            if ($response->getStatusCode() === 200) {
+                // refresh the pange and show success message
+                $this->resetPage();
+                session()->flash('success', 'User deleted successfully');
+            } else {
+                // show error message
+                session()->flash('error', 'Failed to delete user');
+            }
+        } catch (\Exception $e) {
+            // show error message
+            session()->flash('error', 'An error occurred while deleting the user: '. $e->getMessage());
+        }
     }
 
     //layout component
