@@ -107,6 +107,11 @@
                         <small class="text-gray-500">Left it blank if you don't want change the password</small>
                     </span>
                 </div>
+                <div class="sm:col-span-2">
+                    <x-forms.password-update-user label="Password_confirmation" name="password_confirmation"
+                        type="password" id="password_confirmation" placeholder="Confirm Your Password"
+                        wire:model="form.password_confirmation" ero="form.password_confirmation">Password Confirmation</x-forms.password-update-user>
+                </div>
             </div>
             <div class="flex items-center space-x-4">
                 <button type="submit"

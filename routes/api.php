@@ -10,10 +10,11 @@ use function Pest\Laravel\post;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-Route::apiResource('user', UserController::class)->only(['index', 'show', 'store', 'update', 'destroy'])->names([
+Route::apiResource('user', UserController::class)->only(['index', 'show', 'store', 'destroy'])->names([
     'index' => 'api.user.index',
     'show' => 'api.user.show',
     'store' => 'api.user.strore',
-    'update' => 'api.user.update',
     'destroy' => 'api.user.destroy'
 ]);
+
+Route::post('user/{user}/update', [UserController::class, 'update'])->name('api.user.update');

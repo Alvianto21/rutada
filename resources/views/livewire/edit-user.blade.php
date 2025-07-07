@@ -64,6 +64,9 @@
                         <small class="text-gray-500">Left it blank if you don't want change the password</small>
                     </span>
                 </div>
+                <div class="sm:col-span-2">
+                    <x-forms.password-update-user label="Password_confirmation" name="password_confirmation" type="password" id="password_confirmation" placeholder="Your password" wire:model="password_confirmation" ero="password">Password</x-forms.password-update-user>
+                </div>
             </div>
             <div class="flex items-center space-x-4">
                 <button type="submit" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">

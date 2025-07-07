@@ -52,8 +52,10 @@ class EditUser extends Component
     #[Validate('required|string|max:255')]
     public $name= '';
     
+    #[Validate('required|email|unique:users,email')]
     public $email= '';
     
+    #[Validate('required|numeric|digits_between:16,16|unique:users,nik')]
     public $nik= '';
 
     #[Validate('required|string|max:255')]
@@ -85,6 +87,8 @@ class EditUser extends Component
     
     #[Validate('nullable|string|max:255')]
     public $password= '';
+
+    public $password_confirmation = '';
 
     //update user
     public function updateUser() {
@@ -149,7 +153,12 @@ class EditUser extends Component
                 'digits_between:16,16',
                 Rule::unique('users', 'nik')->ignore($this->user->id),
             ],
-            'username' => 'required|string|max:255',
+            'username' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('users', 'username')->ignore($this->user->id),
+            ],
             'place_of_birth' => 'required|string|max:255',
             'address' => 'required|string|max:450',
             'gender' => 'required',
@@ -158,7 +167,7 @@ class EditUser extends Component
             'marital_status' => 'required',
             'job' => 'required|string|max:255',
             'blood_type' => 'nullable|string|max:3',
-            'password' => 'nullable|string|max:255',
+            'password' => 'nullable|string|max:255|conformed',
             'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024|nullable',
         ];
     }
