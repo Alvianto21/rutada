@@ -86,7 +86,7 @@ class CreateUser extends Component
         User::create($this->all() + [
             'photo' => $this->photo,
             'date_of_birth' => $this->date_of_birth,
-            'password' => bcrypt($this->password),
+            'password' => $this->password,
             'is_admin' => $this->is_admin
         ]);
         

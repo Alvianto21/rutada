@@ -86,7 +86,7 @@ class EditUser extends Component
         }
         // validate data
         $edit = $this->form->updateData();
-        Log::info('Data to update user', ['data' => $edit]);
+        // Log::info('Data to update user', ['data' => $edit]);
         // dd($edit);
         // log::info('photo',['photo' => $this->form->photo]);
 
@@ -94,7 +94,6 @@ class EditUser extends Component
         // add photo to array data if exists and is an object and file exists
         if ($this->form->photo && is_object($this->form->photo) && file_exists($this->form->photo->getRealPath())) {
             // create data array
-            $dataUser[] = $edit;
             $Data = [];
 
             foreach ($edit as $key => $value) {
@@ -113,7 +112,7 @@ class EditUser extends Component
                 'filename' => $this->form->photo->getClientOriginalName()
             ];
 
-            Log::info('Sending data with file to API', ['data' => $Data]);
+            // Log::info('Sending data with file to API', ['data' => $Data]);
 
             // setup connection
             $user = $this->user;
@@ -129,7 +128,7 @@ class EditUser extends Component
                         'Accept' => 'application/json',
                     ]
                 ]);
-                log::info('Response from API', ['response' => $response->getBody()->getContents()]);
+                // log::info('Response from API', ['response' => $response->getBody()->getContents()]);
 
                 // check if the response is successful
                 if ($response->getStatusCode() === 200) {
@@ -145,18 +144,18 @@ class EditUser extends Component
                 }
             } catch (ConnectionException $e) {
                 session()->flash('error', 'Failed to connect to API: ' . $e->getMessage());
-                Log::error('failed to connect to API', [
-                    'user' => $this->user,
-                    'error' => $e->getMessage(),
-                    'url' => $url
-                ]);
+                // Log::error('failed to connect to API', [
+                //     'user' => $this->user,
+                //     'error' => $e->getMessage(),
+                //     'url' => $url
+                // ]);
             } catch (\Exception $e) {
                 session()->flash('error', 'Failed to update user data: ' . $e->getMessage());
-                Log::error('failed to update user data', [
-                    'user' => $this->user,
-                    'error' => $e->getMessage(),
-                    'data' => $Data
-                ]);
+                // Log::error('failed to update user data', [
+                //     'user' => $this->user,
+                //     'error' => $e->getMessage(),
+                //     'data' => $Data
+                // ]);
             }
         } else {
             // create data array
@@ -165,7 +164,7 @@ class EditUser extends Component
                 $data[$key] = $value;
             }
 
-            Log::info('Sending data to API', ['data' => $data]);
+            // Log::info('Sending data to API', ['data' => $data]);
 
             // setup connection
             $user = $this->user;
@@ -198,18 +197,18 @@ class EditUser extends Component
                 }
             } catch (ConnectionException $e) {
                 session()->flash('error', 'Failed to connect to API: ' . $e->getMessage());
-                Log::error('failed to connect to API', [
-                    'user' => $this->user,
-                    'error' => $e->getMessage(),
-                    'url' => $url
-                ]);
+                // Log::error('failed to connect to API', [
+                //     'user' => $this->user,
+                //     'error' => $e->getMessage(),
+                //     'url' => $url
+                // ]);
             } catch (\Exception $e) {
                 session()->flash('error', 'Failed to update user data: ' . $e->getMessage());
-                Log::error('failed to update user data', [
-                    'user' => $this->user,
-                    'error' => $e->getMessage(),
-                    'data' => $data
-                ]);
+                // Log::error('failed to update user data', [
+                //     'user' => $this->user,
+                //     'error' => $e->getMessage(),
+                //     'data' => $data
+                // ]);
             }
         }
     }

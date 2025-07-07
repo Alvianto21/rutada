@@ -38,7 +38,7 @@ class EditUser extends Component
     //image preview
     use WithFileUploads;
 
-    #[Validate('image|mimes:jpeg,png,jpg,gif,svg|max:1024|nullable')]
+    #[Validate]
     public $photo;
 
     public function updatePhoto() {
@@ -46,46 +46,36 @@ class EditUser extends Component
     }
 
     //validation rules
-    #[Validate('required|date_format:Y-m-d')]
+    #[Validate]
     public $date_of_birth = '';
     
-    #[Validate('required|string|max:255')]
     public $name= '';
     
-    #[Validate('required|email|unique:users,email')]
+    #[Validate]
     public $email= '';
     
-    #[Validate('required|numeric|digits_between:16,16|unique:users,nik')]
+    #[Validate]
     public $nik= '';
 
-    #[Validate('required|string|max:255')]
+    #[Validate]
     public $username ='';
     
-    #[Validate('required|string|max:255')]
     public $place_of_birth= '';
     
-    #[Validate('required|string|max:450')]
     public $address= '';
     
-    #[Validate('required')]
     public $gender= '';
     
-    #[Validate('required|numeric|digits_between:10,13')]
     public $phone= '';
     
-    #[Validate('required')]
     public $religion= '';
     
-    #[Validate('required')]
     public $marital_status= '';
     
-    #[Validate('required|string|max:255')]
     public $job= '';
 
-    #[Validate('nullable|string|max:3')]
     public $blood_type= '';
     
-    #[Validate('nullable|string|max:255')]
     public $password= '';
 
     public $password_confirmation = '';
@@ -127,7 +117,7 @@ class EditUser extends Component
 
         //update password if provided
         if($this->password) {
-            $this->user->password = bcrypt($this->password);
+            $this->user->password = $this->password;
         }
 
         $this->user->save();
@@ -167,7 +157,7 @@ class EditUser extends Component
             'marital_status' => 'required',
             'job' => 'required|string|max:255',
             'blood_type' => 'nullable|string|max:3',
-            'password' => 'nullable|string|max:255|conformed',
+            'password' => 'nullable|string|max:255|confirmed|min:8',
             'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024|nullable',
         ];
     }

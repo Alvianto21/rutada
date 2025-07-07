@@ -51,9 +51,6 @@ class UserController extends Controller
             'password' => 'required|string|min:8'
         ]);
 
-        // secure the password
-        $data['password'] = Hash::make($data['password']);
-
         // store the photo if exists
         if ($request->hasFile('photo')) {
             $data['photo'] = $request->file('photo')->store('profile-photos', 'public');
@@ -106,7 +103,7 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         // find the user
-        Log::info('data request ', ['data' => $request->all(), 'file' => $request->input('photo'), 'phone' => $request->input('phone')]);
+        // Log::info('data request ', ['data' => $request->all(), 'file' => $request->input('photo'), 'phone' => $request->input('phone')]);
         $user = User::find($id);
 
         // if user not found, return 404
@@ -116,9 +113,9 @@ class UserController extends Controller
                 'message' => 'User not found'
             ], 404);
         }
-        Log::info('Updating user', ['data' => $user]);
+        // Log::info('Updating user', ['data' => $user]);
 
-        Log::info('validating request ....');
+        // Log::info('validating request ....');
         // validate the request
         $data = $request->validate([
             'photo.name' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
@@ -151,17 +148,14 @@ class UserController extends Controller
             'marital_status' => 'required',
             'password' => 'string|min:8|confirmed|nullable'
         ]);
-        Log::info('Data validated, continue', ['data' => $data]);
+        // Log::info('Data validated, continue', ['data' => $data]);
 
-        Log::info('storing new photo or secure new password if exists');
-        // if user update password, hash it
-        if(isset($data['password']) && !empty($request->input('password'))) {
-            $data['password'] = Hash::make($data['password']);
-            Log::info('Password secured, continue');
-        } else {
-            // if user not update password, remove it from data
+        // Log::info('storing new photo or secure new password if exists');
+        // if user not update password, remove it from data
+        if(!isset($data['password']) && empty($request->input('password'))) {
             unset($data['password']);
-        }
+            // Log::info('Password secured, continue');
+        } 
 
         // if user update photo, store it and delete old one
         if ($request->hasFile('photo')) {
@@ -172,11 +166,11 @@ class UserController extends Controller
 
             // store new photo
             $data['photo'] = $request->file('photo')->store('profile-photos', 'public');
-            Log::info('Photo stored, continue');
+            // Log::info('Photo stored, continue');
         }
 
         // update user
-        Log::info('Updateting user and return JSON response');
+        // Log::info('Updateting user and return JSON response');
         $update = $user->update($data);
     
         // return response
