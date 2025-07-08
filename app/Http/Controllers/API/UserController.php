@@ -77,10 +77,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $username)
     {
         // return a sigle user
-        $data = User::find($id);
+        $data = User::where('username', $username)->first();
 
         // return response
         if ($data) {
@@ -100,11 +100,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $username)
     {
         // find the user
         // Log::info('data request ', ['data' => $request->all(), 'file' => $request->input('photo'), 'phone' => $request->input('phone')]);
-        $user = User::find($id);
+        $user = User::where('username', $username)->first();
 
         // if user not found, return 404
         if (!$user) {
@@ -191,10 +191,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $username)
     {
         // find the user
-        $user = User::find($id);
+        $user = User::where('username', $username)->first();
 
         // if user not found, return 404
         if (!$user) {
@@ -210,13 +210,20 @@ class UserController extends Controller
         }
 
         // delete user
-        User::destroy($id);
+        $data = User::destroy($user->id);
 
         // return response
-        return response()->json([
+        if ($data) {
+            return response()->json([
             'success' => true,
             'message' => 'User deleted successfully',
             'data' => $user
         ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'User deletion failed'
+            ], 500);
+        }
     }
 }

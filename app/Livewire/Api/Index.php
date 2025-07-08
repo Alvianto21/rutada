@@ -24,10 +24,10 @@ class Index extends Component
     }
 
     // delete user function
-    public function deleteUser($id) {
+    public function deleteUser($username) {
         // setup connection
         $client = new Client();
-        $url = "http://rutada.test:8080/api/user/{$id}";
+        $url = "http://rutada.test:8080/api/user/{$username}";
         try {
             $response = $client->request('DELETE', $url, [
                 'headers' => [
