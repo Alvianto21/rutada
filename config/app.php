@@ -137,4 +137,16 @@ return [
 
     'trusted_hosts' => explode(',', env('APP_TRUSTED_HOSTS', '')),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Allowed IPs
+    |--------------------------------------------------------------------------
+    | This should be an allowed list of IPs for security purposes, such as 
+    | whitelisting specific IPs for API access or admin interfaces. This can 
+    | be a comma-separated list of IP addresses or CIDR notations.
+    |--------------------------------------------------------------------------
+    */
+
+    'allowed_ips' => env('ALLOWED_IPS', ''), 
+
 ];

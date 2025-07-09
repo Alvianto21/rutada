@@ -13,7 +13,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'admin' => App\Http\Middleware\isAdmin::class
+            'admin' => App\Http\Middleware\isAdmin::class,
+            'checkHost' => App\Http\Middleware\checkHost::class,
         ]);
         $middleware->trustHosts(at: fn () => config('app.trusted_hosts'));
     })

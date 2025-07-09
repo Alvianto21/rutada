@@ -26,9 +26,11 @@ class Index extends Component
     // delete user function
     public function deleteUser($username) {
         // setup connection
+        // Log::info('Deletimg user', ['username' => $username]);
         $client = new Client();
         $url = "http://rutada.test:8080/api/user/{$username}";
         try {
+            // Log::info('sending request to API');
             $response = $client->request('DELETE', $url, [
                 'headers' => [
                     'Accept' => 'application/json',
@@ -39,8 +41,8 @@ class Index extends Component
             // check if response is successful
             if ($response->getStatusCode() === 200) {
                 // refresh the pange and show success message
-                $this->resetPage();
                 session()->flash('success', 'User deleted successfully');
+                return $this->redirectRoute('user.index');
             } else {
                 // show error message
                 session()->flash('error', 'Failed to delete user');
