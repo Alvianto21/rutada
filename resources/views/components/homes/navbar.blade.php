@@ -17,6 +17,7 @@
 
                     @can('admin')
                         <x-homes.navlink href="/users" :active="request()->is('users')">Users</x-homes.navlink>
+                        <x-homes.navlink href="/user" :active="request()->is('user')">API</x-homes.navlink>
                     @endcan
                 @endauth
               </div>
@@ -50,6 +51,9 @@
                 @auth                   
                 <x-Homes.navlink-user href="/profile" :active="request()->is('profile')" id="user-menu-item-0">Your Profile</x-Homes.navlink-user>
                 {{-- <x-Homes.navlink-user href="/dashboard" :active="request()->is('dashboard')" id="user-menu-item-0">Dashboard</x-Homes.navlink-user> --}}
+                @can('admin')
+                    <x-homes.navlink-user href="/token/create" :active="request()->is('token/create')" id="user-menu-item-0">Token</x-homes.navlink-user>
+                @endcan
                 <form action="{{ route('logout') }}" method="post">
                   @csrf
                   <button type="submit" class="block px-4 py-2 text-sm text-gray-700">Sign out</button>
@@ -90,6 +94,7 @@
 
             @can('admin')
               <x-homes.navlink href="/users" :active="request()->is('users')">Users</x-homes.navlink>
+              <x-homes.navlink href="/user" :active="request()->is('user')">API</x-homes.navlink>
             @endcan
           @endauth
         </div>
@@ -112,6 +117,9 @@
             @auth               
             <a href="/profile" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your Profile</a>
             {{-- <a href="/dashboard" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Dashboard</a> --}}
+            @can('admin')
+            <a href="/token/create" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your Token</a>
+            @endcan
             <form action="{{ route('logout') }}" method="post">
               @csrf
               <button type="submit" class="rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</button>

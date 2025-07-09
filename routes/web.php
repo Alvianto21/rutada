@@ -48,15 +48,19 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/users/create', CreateUser::class)->name('users.create');
 
     Route::get('/users/{user:username}/edit', EditUser::class)->name('users.edit');
+
+    Route::get('/token/create', [DasboardController::class, 'token'])->name('token.create');
 });
 
 // API routes
-Route::get('/user', Index::class)->name('user.index');
-
-Route::get('/user/create', ApiCreateUser::class)->name('user.create');
-
-Route::get('/user/{user}', ShowUser::class)->name('user.show');
-
-Route::get('/user/{user}/edit', ApiEditUser::class)->name('user.edit');
+Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+    Route::get('/user', Index::class)->name('user.index');
+    
+    Route::get('/user/create', ApiCreateUser::class)->name('user.create');
+    
+    Route::get('/user/{user}', ShowUser::class)->name('user.show');
+    
+    Route::get('/user/{user}/edit', ApiEditUser::class)->name('user.edit');
+});
 
 require __DIR__.'/auth.php';
