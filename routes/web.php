@@ -53,7 +53,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 });
 
 // API routes
-Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+Route::middleware(['auth', 'verified', 'admin' , 'auth:sanctum'])->group(function () {
     Route::get('/user', Index::class)->name('user.index');
     
     Route::get('/user/create', ApiCreateUser::class)->name('user.create');
